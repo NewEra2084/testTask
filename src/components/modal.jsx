@@ -15,7 +15,6 @@ export function Modal({
 		<div className="overflow">
 			<div className="sans modal__wrapper">
 				<form className="customerInfo" name="customerInfo">
-					
 					<div className="modal__form-input">
 						<label htmlFor="name" className="modal__input-title">
 							ФИО

@@ -10,18 +10,20 @@
   padding-right: 40px;
   padding-left: 40px;
   font-weight: 600;
+  max-height: 4rem;
 }
 .tab1{
   min-width: 200px;
 }
 .tab2{
   min-width: 400px;
-  max-width: 400px;
+  max-width: 401px;
   margin-right: 40px;
 }
 .tab3{
-  min-width: 500px;
-  max-width: 500px;
+  min-width: 400px;
+  max-width: 401px;
+  margin-right: 40px;
 }
 .tab4{
   min-width: 500px;
@@ -39,6 +41,8 @@
 }
 .truncate{
   text-overflow: ellipsis;
+  overflow: hidden;
+  text-wrap: nowrap;
 }
 .tab7{
   border-radius: 100%;
@@ -53,12 +57,17 @@
 .hr{
   height: 1px;
   margin-top: 8px;
+  width: 1770px;
 }
 .list__collection{
   padding-right: 40px;
   font-size: 16px;
+  margin-top: 0;
 }
 .list__collection__item{
   display: flex;
   padding-top: 20px;
+}
+.list__collection__item:first-child{
+  padding-top: 0;
 }

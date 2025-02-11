@@ -15,7 +15,7 @@ export function List({
 				<h5 className="tab5">Группа</h5>
 				<h5 className="tab6">Присутствие</h5>
 			</div>
-			<hr className="hr" />
+			<hr className="hr"/>
 			<ul className="list__collection">
 				{customers
 					.filter(
@@ -32,7 +32,7 @@ export function List({
 									editCustomer(customer.name, setIsOpen, setReplaced, isOpen)
 								}
 							>
-								<h2 className="tab1 tabular-nums">{id + 1}</h2>
+								<h2 className="tab1">{id + 1}</h2>
 								<h2 className="tab2 truncate">{customer.name}</h2>
 								<h2 className="tab3 truncate">{customer.company}</h2>
 								<h2 className="tab4">{customer.role}</h2>
