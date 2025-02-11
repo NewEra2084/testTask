@@ -1,0 +1,64 @@
+.list{
+  overflow-y: auto;
+  overflow-x: auto;
+  max-height: 60vh;
+}
+.list__title{
+  color: #4E3000;
+  display: flex;
+  font-size: 24px;
+  padding-right: 40px;
+  padding-left: 40px;
+  font-weight: 600;
+}
+.tab1{
+  min-width: 200px;
+}
+.tab2{
+  min-width: 400px;
+  max-width: 400px;
+  margin-right: 40px;
+}
+.tab3{
+  min-width: 500px;
+  max-width: 500px;
+}
+.tab4{
+  min-width: 500px;
+}
+.tab5{
+  min-width: 440px;
+}
+.tab6{
+  min-width: 56px;
+  margin-left: auto;
+}
+@mixin customerColor($color){
+  background: $color;
+  min-width: 56px;
+}
+.truncate{
+  text-overflow: ellipsis;
+}
+.tab7{
+  border-radius: 100%;
+  height: 56px;
+  @include customerColor(#80BB00)
+}
+.tab8{
+  border-radius: 100%;
+  height: 56px;
+  @include customerColor(red)
+}
+.hr{
+  height: 1px;
+  margin-top: 8px;
+}
+.list__collection{
+  padding-right: 40px;
+  font-size: 16px;
+}
+.list__collection__item{
+  display: flex;
+  padding-top: 20px;
+}
