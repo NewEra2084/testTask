@@ -5,6 +5,7 @@ export function List({
 	setIsOpen,
 	setReplaced,
 	isOpen,
+	setCustomerIndexInList
 }) {
 	return (
 		<div className="sans list">
@@ -28,8 +29,10 @@ export function List({
 							<li
 								className="list__collection__item"
 								key={id}
-								onClick={() =>
-									editCustomer(customer.name, setIsOpen, setReplaced, isOpen)
+								onClick={() =>{
+									editCustomer(id+1, setIsOpen, setReplaced, isOpen);
+									setCustomerIndexInList(id+1);
+								}
 								}
 							>
 								<h2 className="tab1">{id + 1}</h2>

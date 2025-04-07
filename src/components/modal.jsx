@@ -6,6 +6,7 @@ export function Modal({
 	onClose,
 	action,
 	localStorageWrite,
+	index,
 	info="",
 	actionName = "Добавить",
 }) {
@@ -65,12 +66,13 @@ export function Modal({
 							className={"roboto modal__buttons"}
 							variant={"green"}
 							type={"submit"}
-							onClick={() => {
+							onClick={(e) => {
+								e.preventDefault();
 								action();
 								localStorageWrite(
-									document.querySelectorAll("[data-localstorage]"),
-									document.querySelector("[data-localstorage]")
+									document.querySelectorAll("[data-localstorage]"),index
 								);
+								onClose();
 							}}
 						>
 							{actionName}

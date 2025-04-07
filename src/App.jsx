@@ -14,7 +14,6 @@ import {
 	filterNames,
 	filterCompanies,
 	editCustomer,
-	replaceCustomer,
 	countInOut,
 } from "./components/logic";
 
@@ -26,6 +25,9 @@ function HomePage() {
 	const [countInOutState, setCountInOut] = useState({ in: "", out: "" });
 	const [replaced, setReplaced] = useState("");
 	const [cust, setCust] = useState("");
+	const [closingUpdate, setclosingUpdate] = useState(0);
+	const [customerIndexInList, setCustomerIndexInList] = useState(null);
+
 	useEffect(() => {
 		updateState(setCustomers);
 		countInOut(setCountInOut);
@@ -33,6 +35,10 @@ function HomePage() {
 	useEffect(() => {
 		setCust(JSON.parse(localStorage.getItem(replaced)));
 	}, [replaced]);
+	useEffect(() => {
+		updateState(setCustomers);
+		countInOut(setCountInOut);
+	}, [closingUpdate]);
 
 	return (
 		<>
@@ -55,6 +61,7 @@ function HomePage() {
 					setIsOpen={setIsOpen}
 					setReplaced={setReplaced}
 					isOpen={isOpen}
+					setCustomerIndexInList={setCustomerIndexInList}
 				/>
 				<Filters
 					Present={() => Present(setCustomers)}
@@ -62,23 +69,25 @@ function HomePage() {
 					Clear={() => updateState(setCustomers)}
 				/>
 			</main>
+			
 			<Modal
 				isOpen={isOpen.adding}
 				onClose={() => setIsOpen({ ...isOpen, adding: false })}
-				action={() => updateState(setCustomers)}
+				action={() => {updateState(setCustomers); setclosingUpdate(st => st+1)}}
 				actionName="Добавить"
 				localStorageWrite={localStorageWrite}
 			/>
 			<Modal
 				isOpen={isOpen.replacing}
 				onClose={() => setIsOpen({ ...isOpen, replacing: false })}
-				action={() => replaceCustomer(replaced)}
+				action={() => {setclosingUpdate(st => st+1)}}
 				actionName="Поменять"
+				index={customerIndexInList}
 				localStorageWrite={localStorageWrite}
 				info={cust}
 			/>
 		</>
 	);
 }
-
+//!добавить тринарник к модалке
 export default HomePage;
