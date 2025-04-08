@@ -1,5 +1,4 @@
-import { Error } from "./error-msg";
-export function UIInput({ className1, className2, variant, children }) {
+export function UIInput({ className1, className3, className2, variant, value, onChange,error, children }) {
   return (
     <div className={className1}>
       <label htmlFor={variant} className={`modal__input-title`}>
@@ -12,8 +11,10 @@ export function UIInput({ className1, className2, variant, children }) {
           data-localstorage
           id={variant}
           placeholder={children}
+          value={value}
+          onChange={onChange}
         ></input>
-        <Error>Заполните это поле</Error>
+        <p className={`${className3} modal__form-error`} data-error={error}>Заполните это поле</p>
       </div>
     </div>
   );

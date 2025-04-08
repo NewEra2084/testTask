@@ -1,6 +1,7 @@
 import { CrossIcon } from "../media/cross";
 import { UIButton, UICheckbox, UISelect } from "./ui";
 import { UIInput } from "./ui";
+import { useRef, useState } from "react";
 
 export function Modal({
   isOpen = false,
@@ -10,7 +11,17 @@ export function Modal({
   index,
   actionName = "Добавить",
 }) {
+  const selector = useRef(null);
+  const [nameInput, setNameInput] = useState("");
+  const [companyInput, setCompanyInput] = useState("");
   if (!isOpen) return;
+
+  function namingHandler(e) {
+    setNameInput(() => e.target.value);
+  }
+  function companyNamingHandler(e) {
+    setCompanyInput(() => e.target.value);
+  }
 
   return (
     <div className="overflow">
@@ -26,13 +37,20 @@ export function Modal({
               index
             );
             onClose();
+            setNameInput("");
+            setCompanyInput("");
           }}
         >
           <UIInput
             required
             className1={"modal__form-input"}
             className2={"transition sans modal__input-field"}
+            className3={"NameError"}
             variant={"modal__name-for"}
+            value={nameInput}
+            onChange={(e) => {
+              namingHandler(e);
+            }}
           >
             ФИО
           </UIInput>
@@ -40,11 +58,20 @@ export function Modal({
             required
             className1={"modal__form-input"}
             className2={"transition sans modal__input-field"}
+            className3={"CompanyError"}
             variant={"modal__company-for"}
+            value={companyInput}
+            onChange={(e) => {
+              companyNamingHandler(e);
+            }}
           >
             Компания
           </UIInput>
-          <UISelect className={"modal__also"} variant={"modal__group-for"}>
+          <UISelect
+            ref={selector}
+            className={"modal__also"}
+            variant={"modal__group-for"}
+          >
             Группа
           </UISelect>
           <UICheckbox className={"modal__also"} variant={"modal__button-for"}>
@@ -55,11 +82,19 @@ export function Modal({
               className={"roboto modal__buttons"}
               variant={"green"}
               type={"submit"}
-              onClick={() => {
-                if (document.getElementById("group")?.value === "Выбрать") {
-                  document.getElementById("group").value = "Прохожий"
+              onClick={(e) => {
+                if (nameInput === "") {
+                  e.preventDefault();
+                  document.querySelector(".NameError").style.display = "block";
                 }
-
+                if (companyInput === "") {
+                  e.preventDefault();
+                  document.querySelector(".CompanyError").style.display =
+                    "block";
+                }
+                if (selector.current?.value === "Выбрать") {
+                  selector.current.value = "Прохожий";
+                }
               }}
             >
               {actionName}
@@ -67,13 +102,24 @@ export function Modal({
             <UIButton
               className={"roboto modal__buttons"}
               variant={"gray"}
-              onClick={onClose}
+              onClick={() => {
+                setNameInput("");
+                setCompanyInput("");
+                onClose();
+              }}
             >
               Закрыть
             </UIButton>
           </div>
         </form>
-        <div className={"close-button"} onClick={onClose}>
+        <div
+          className={"close-button"}
+          onClick={() => {
+            setNameInput("");
+            setCompanyInput("");
+            onClose();
+          }}
+        >
           <CrossIcon />
         </div>
       </div>

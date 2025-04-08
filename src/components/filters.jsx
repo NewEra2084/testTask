@@ -5,8 +5,8 @@ export function Filters({ Present, Missing, Clear }) {
   const [filtered, setFiltered] = useState(2);
 
   useEffect(()=>{
-    const b = document.querySelectorAll(".filters__options");
-    b.forEach((element, id) => {
+    const options = document.querySelectorAll(".filters__options");
+    options.forEach((element, id) => {
       if(id === filtered){        
         element.classList.add("without");
       }else{
@@ -19,7 +19,6 @@ export function Filters({ Present, Missing, Clear }) {
     <div className={"filters"}>
       <h2 className={"filters__title sans"}>Фильтровать по:</h2>
       <div className="filters__variants">
-        
         <button
           className={"filters__options"}
           id="abc"
