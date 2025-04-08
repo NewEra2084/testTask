@@ -21,8 +21,8 @@ export function List({
 				{customers
 					.filter(
 						(customer) =>
-							customer.name.includes(str.name) &&
-							customer.company.includes(str.company)
+							customer.name.toLowerCase().includes(str.name) &&
+							customer.company.toLowerCase().includes(str.company)
 					)
 					.map((customer, id) => {
 						return (

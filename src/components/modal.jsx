@@ -1,95 +1,84 @@
 import { CrossIcon } from "../media/cross";
-import { UIButton } from "./ui/ui-Button";
+import { UIButton, UICheckbox, UISelect } from "./ui";
+import { UIInput } from "./ui";
 
 export function Modal({
-	isOpen = false,
-	onClose,
-	action,
-	localStorageWrite,
-	index,
-	info="",
-	actionName = "Добавить",
+  isOpen = false,
+  onClose,
+  action,
+  localStorageWrite,
+  index,
+  actionName = "Добавить",
 }) {
-	if (!isOpen) return;
-	
-	return (
-		<div className="overflow">
-			<div className="sans modal__wrapper">
-				<form className="customerInfo" name="customerInfo">
-					<div className="modal__form-input">
-						<label htmlFor="name" className="modal__input-title">
-							ФИО
-						</label>
-						<input
-							required
-							className={!info?.name ? "transition sans modal__input-field" : "sans modal__input-field"}
-							data-localstorage
-							id="name"
-							placeholder={info?.name || "ФИО"}
-						></input>
-					</div>
-					<div className="modal__form-input">
-						<label htmlFor="company" className="modal__input-title">
-							Компания
-						</label>
-						<input
-							required
-							id="company"
-							className={!info?.name ? "transition sans modal__input-field" : "sans modal__input-field"}
-							data-localstorage
-							placeholder={info?.company || "Компания"}
-						></input>
-					</div>
-					<div className="modal__also">
-						<label htmlFor="group" className="modal__input-title">
-							Группа
-						</label>
-						<select id="group" className="modal__input-field" data-localstorage>
-							<option>Прохожий</option>
-							<option>Клиент</option>
-							<option>Партнер</option>
-						</select>
-					</div>
-					<div className="modal__also">
-						<label htmlFor="checking" className="modal__input-title will">
-							Присутствие
-						</label>
-						<input
-							id="checking"
-							type="checkbox"
-							data-localstorage
-							className="modal__check-button"
-						></input>
-					</div>
-					<div className="modal__buttons-wrapper">
-						<UIButton
-							className={"roboto modal__buttons"}
-							variant={"green"}
-							type={"submit"}
-							onClick={(e) => {
-								e.preventDefault();
-								action();
-								localStorageWrite(
-									document.querySelectorAll("[data-localstorage]"),index
-								);
-								onClose();
-							}}
-						>
-							{actionName}
-						</UIButton>
-						<UIButton
-							className={"roboto modal__buttons"}
-							variant={"gray"}
-							onClick={onClose}
-						>
-							Закрыть
-						</UIButton>
-					</div>
-				</form>
-				<div className={"close-button"} onClick={onClose}>
-					<CrossIcon />
-				</div>
-			</div>
-		</div>
-	);
+  if (!isOpen) return;
+
+  return (
+    <div className="overflow">
+      <div className="sans modal__wrapper">
+        <form
+          className="customerInfo"
+          name="customerInfo"
+          onSubmit={(e) => {
+            e.preventDefault();
+            action();
+            localStorageWrite(
+              document.querySelectorAll("[data-localstorage]"),
+              index
+            );
+            onClose();
+          }}
+        >
+          <UIInput
+            required
+            className1={"modal__form-input"}
+            className2={"transition sans modal__input-field"}
+            variant={"modal__name-for"}
+          >
+            ФИО
+          </UIInput>
+          <UIInput
+            required
+            className1={"modal__form-input"}
+            className2={"transition sans modal__input-field"}
+            variant={"modal__company-for"}
+          >
+            Компания
+          </UIInput>
+          {/* Добавить обработку */}
+          <UISelect className={"modal__also"} variant={"modal__group-for"}>
+            Группа
+          </UISelect>
+          <UICheckbox className={"modal__also"} variant={"modal__button-for"}>
+            Присутствие
+          </UICheckbox>
+          <div className="modal__buttons-wrapper">
+            <UIButton
+              className={"roboto modal__buttons"}
+              variant={"green"}
+              type={"submit"}
+              onClick={() => {
+                
+                if (document.getElementById("group")?.value === "Выбрать") {
+                  document.getElementById("group").value = "Прохожий"
+                }
+
+              }}
+            >
+              {actionName}
+            </UIButton>
+            <UIButton
+              className={"roboto modal__buttons"}
+              variant={"gray"}
+              onClick={onClose}
+            >
+              Закрыть
+            </UIButton>
+          </div>
+        </form>
+        <div className={"close-button"} onClick={onClose}>
+          <CrossIcon />
+        </div>
+      </div>
+    </div>
+  );
 }

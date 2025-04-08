@@ -125,6 +125,12 @@
 	.transition::placeholder {
 		opacity: 1;
 	}
+	.customerInfo{
+		align-items: center;
+	}
+	.modal__wrapper{
+		padding: 66px 10vw;
+	}
 }
 
 @media screen and (max-width: 840px) {

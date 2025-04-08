@@ -4,6 +4,7 @@ import "./styles/css/list.css";
 import "./styles/css/modal.css";
 import "./styles/css/style.css";
 
+// Мне кажется, что можно сжать все импорты(использовать объект вместо деструкторизации) и state(Использовать Reducer), но я слишком поздно об этом подумал   
 import { Header, List, Modal, Filters } from "./components/exports";
 import { useEffect, useState } from "react";
 import {
@@ -15,8 +16,8 @@ import {
 	filterCompanies,
 	editCustomer,
 	countInOut,
+	filterBoth,
 } from "./components/logic";
-
 
 function HomePage() {
 	const [isOpen, setIsOpen] = useState({ adding: false, replacing: false });
@@ -48,6 +49,7 @@ function HomePage() {
 				setIsOpen={setIsOpen}
 				filterNames={filterNames}
 				filterCompanies={filterCompanies}
+				filterBoth={filterBoth}
 				state={setTempStr}
 				tempStr={tempStr}
 				inCount={countInOutState.in}
@@ -69,14 +71,16 @@ function HomePage() {
 					Clear={() => updateState(setCustomers)}
 				/>
 			</main>
+			{isOpen.adding ? 
+				<Modal
+					isOpen={isOpen.adding}
+					onClose={() => setIsOpen({ ...isOpen, adding: false })}
+					action={() => {updateState(setCustomers); setclosingUpdate(st => st+1)}}
+					actionName="Добавить"
+					localStorageWrite={localStorageWrite}
+				/>
+				:
 			
-			<Modal
-				isOpen={isOpen.adding}
-				onClose={() => setIsOpen({ ...isOpen, adding: false })}
-				action={() => {updateState(setCustomers); setclosingUpdate(st => st+1)}}
-				actionName="Добавить"
-				localStorageWrite={localStorageWrite}
-			/>
 			<Modal
 				isOpen={isOpen.replacing}
 				onClose={() => setIsOpen({ ...isOpen, replacing: false })}
@@ -86,6 +90,7 @@ function HomePage() {
 				localStorageWrite={localStorageWrite}
 				info={cust}
 			/>
+		}
 		</>
 	);
 }

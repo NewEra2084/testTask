@@ -16,15 +16,12 @@ function localStorageWrite(values,index) {
 function localStorageRead() {
 	let values = [];
 	for (let i = 1; i <= localStorage.length; i++) {
-		// let key = localStorage.key(i);
 		try {
 			values.push(JSON.parse(localStorage.getItem(i)));
 		} catch (error) {
 			console.log(error.name + ": " + error.message	);
 		}
-	}
-	console.log(values);
-	
+	}	
 	return values;
 }
 
@@ -44,10 +41,13 @@ function filterNames(value,set, tempStr) {
 function filterCompanies(value, set, tempStr) {
 	set({ ...tempStr, company: value });
 }
+function filterBoth(value, set) {
+	set({name: value[0], company: value[1] });
+}
 function editCustomer(name,setIsOpen, setReplaced,isOpen) {
 	setIsOpen({ ...isOpen, replacing: true });
 	setReplaced(name.toString());
-} //!
+} 
 function countInOut(set) {
 	set({
 		out: localStorageRead().filter((customer) => !customer.has).length,
@@ -55,4 +55,4 @@ function countInOut(set) {
 	});
 }
 
-export { localStorageWrite, localStorageRead, updateState, Present, Missing,filterCompanies, filterNames,editCustomer, countInOut};
+export { localStorageWrite, localStorageRead, updateState, Present, Missing,filterCompanies, filterNames,editCustomer, countInOut, filterBoth};

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 
 export function Filters({ Present, Missing, Clear }) {
 	const [filtered, setFiltered] = useState(false);
@@ -8,7 +8,7 @@ export function Filters({ Present, Missing, Clear }) {
 			<h2 className={"filters__title sans"}>Фильтровать по:</h2>
 			<div className="filters__variants">
 				<button
-					className="filters__options"
+					className={filtered ? "with" : "without"}
 					onClick={() => {
 						Missing();
 						setFiltered(() => true);
@@ -17,7 +17,7 @@ export function Filters({ Present, Missing, Clear }) {
 					Отсутствующим
 				</button>
 				<button
-					className="filters__options"
+					className={filtered ? "with" : "without"}
 					onClick={() => {
 						Present();
 						setFiltered(() => true);
