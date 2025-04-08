@@ -44,7 +44,6 @@ export function Modal({
           >
             Компания
           </UIInput>
-          {/* Добавить обработку */}
           <UISelect className={"modal__also"} variant={"modal__group-for"}>
             Группа
           </UISelect>
@@ -57,7 +56,6 @@ export function Modal({
               variant={"green"}
               type={"submit"}
               onClick={() => {
-                
                 if (document.getElementById("group")?.value === "Выбрать") {
                   document.getElementById("group").value = "Прохожий"
                 }

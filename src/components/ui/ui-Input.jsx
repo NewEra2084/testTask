@@ -1,10 +1,5 @@
 import { Error } from "./error-msg";
-export function UIInput({
-  className1,
-  className2,
-  variant,
-  children
-}) {
+export function UIInput({ className1, className2, variant, children }) {
   return (
     <div className={className1}>
       <label htmlFor={variant} className={`modal__input-title`}>

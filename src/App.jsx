@@ -5,7 +5,7 @@ import "./styles/css/modal.css";
 import "./styles/css/style.css";
 
 // Мне кажется, что можно сжать все импорты(использовать объект вместо деструкторизации) и state(Использовать Reducer), но я слишком поздно об этом подумал   
-import { Header, List, Modal, Filters } from "./components/exports";
+import { Header, List, Modal, Filters } from "./components";
 import { useEffect, useState } from "react";
 import {
 	localStorageWrite,
@@ -94,5 +94,4 @@ function HomePage() {
 		</>
 	);
 }
-//!добавить тринарник к модалке
 export default HomePage;

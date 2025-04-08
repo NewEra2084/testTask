@@ -1,4 +1,4 @@
-.filters{
+.filters {
   position: absolute;
   display: flex;
   flex-wrap: wrap;
@@ -8,36 +8,38 @@
   font-size: 1.5rem;
   line-height: 2rem;
   color: rgb(78 48 0);
+  &__title {
+    margin-top: auto;
+    margin-bottom: auto;
+    font-size: 1.875rem;
+    line-height: 2.25rem;
+    font-weight: 700;
+  }
+  &__variants {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 3rem;
+  }
+  &__options {
+    border: none;
+    background: none;
+    color: rgb(78 48 0);
+    font-size: 24px;
+  }
 }
-.filters__title{
-  margin-top: auto;
-  margin-bottom: auto;
-  font-size: 1.875rem;
-  line-height: 2.25rem;
-  font-weight: 700;
-}
-.filters__variants{
-  display: flex;
-  flex-wrap: wrap;
-  gap: 3rem;
-}
-@mixin clear-filters($color){
+
+@mixin clear-filters($color) {
   background-color: $color;
   border-radius: 1.5rem;
   border: none;
   color: white;
-  padding: 1.25rem 0.5rem ;
+  padding: 1.25rem 0.5rem;
   font-size: 24px;
 }
-.without{
+.without {
   @include clear-filters(rgb(196 196 196));
 }
-.with{
-  @include clear-filters(rgb(84 216 102));
+.with {
+  @include clear-filters(rgb(196 196 196));
 }
-.filters__options{
-  border: none;
-  background: none;
-  color: rgb(78 48 0);
-  font-size: 24px;
-}
+

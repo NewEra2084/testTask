@@ -1,7 +1,9 @@
 import logo from "../media/logo.svg";
 import { useState } from "react";
-import { UIInput } from "./ui";
+import { UIButton, UISearch } from "./ui";
 import Customers from "./customers.jsx";
+import { MenuCloseIcon } from "../media/menuClose.jsx";
+import { MenuIcon } from "../media/menu.jsx";
 
 export function Header({
   inputText,
@@ -17,14 +19,28 @@ export function Header({
 }) {
   const [isClicked, setClicked] = useState(false);
 
+  function ChangeHandler(itemForFilter, item) {
+    itemForFilter(
+      document.querySelector(`#${item}`).value.toLowerCase(),
+      state,
+      tempStr
+    );
+  }
+
   function burgerClickHandle() {
     if (!isClicked) {
       setClicked(true);
       state({ name: "", company: "" });
     }
     if (isClicked) {
-		filterBoth([document.querySelector("#nameMd").value.toLowerCase(), document.querySelector("#companyMd").value.toLowerCase()], state);
-		setClicked(false);
+      filterBoth(
+        [
+          document.querySelector("#nameMd").value.toLowerCase(),
+          document.querySelector("#companyMd").value.toLowerCase(),
+        ],
+        state
+      );
+      setClicked(false);
     }
   }
 
@@ -33,108 +49,54 @@ export function Header({
       <img src={logo} alt="Агроном сад" className="header__logo" />
 
       <div className="header__search">
-        <input
-          type="text"
+        <UISearch
           placeholder={inputText}
-          onChange={() =>
-            filterNames(
-              document.querySelector("#name").value.toLowerCase(),
-              state,
-              tempStr
-            )
-          }
+          onChange={() => ChangeHandler(filterNames, "name")}
           className="sans header__search__input"
           id="name"
-        />
-        <input
-          type="text"
-          placeholder="Поиск по компании"
-          onChange={() =>
-            filterCompanies(
-              document.querySelector("#company").value.toLowerCase(),
-              state,
-              tempStr
-            )
-          }
+        ></UISearch>
+        <UISearch
+          placeholder={"Поиск по компании"}
+          onChange={() => ChangeHandler(filterCompanies, "company")}
           className="sans header__search__input"
           id="company"
-        />
-        <button
-          className="roboto header__search__button"
+        ></UISearch>
+        <UIButton
+          variant={"header"}
           onClick={() => setIsOpen({ ...setIsOpen, adding: true })}
         >
           {buttonText}
-        </button>
+        </UIButton>
       </div>
       {/*Выпадающее меню*/}
       <div className="burger-main">
         <button className="burger__button" onClick={burgerClickHandle}>
           {isClicked ? (
-            <svg
-              className="burger__close"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M6 18L18 6M6 6l12 12"
-              />
-            </svg>
+            <MenuCloseIcon className={"burger__close"} />
           ) : (
-            <svg
-              className="burger__close"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M4 6h16M4 12h16m-7 6h7"
-              />
-            </svg>
+            <MenuIcon className={"burger__close"} />
           )}
         </button>
         {isClicked && (
           <div className={"burger burger-opened"}>
-            <input
-              type="text"
+            <UISearch
               placeholder={inputText}
-              onChange={() => {
-                filterNames(
-                  document.querySelector("#nameMd").value.toLowerCase(),
-                  state,
-                  tempStr
-                );
-              }}
+              onChange={() => ChangeHandler(filterNames, "nameMd")}
               className="sans header__search__input"
               id="nameMd"
-            />
-            <input
-              type="text"
-              placeholder="Поиск по компании"
-              onChange={() =>
-                filterCompanies(
-                  document.querySelector("#companyMd").value.toLowerCase(),
-                  state,
-                  tempStr
-                )
-              }
+            ></UISearch>
+            <UISearch
+              placeholder={inputText}
+              onChange={() => ChangeHandler(filterCompanies, "companyMd")}
               className="sans header__search__input"
               id="companyMd"
-            />
-            <button
-              className="roboto header__search__button"
+            ></UISearch>
+            <UIButton
+              variant={"header"}
               onClick={() => setIsOpen({ ...setIsOpen, adding: true })}
             >
               {buttonText}
-            </button>
+            </UIButton>
           </div>
         )}
       </div>

@@ -1,11 +1,6 @@
 import { Error } from "./error-msg";
 
-export function UISelect({
-  className,
-  variant,
-  children,
-  error,
-}) {
+export function UISelect({ className, variant, children, error }) {
   return (
     <div className={className}>
       <label htmlFor={variant} className={`modal__input-title`}>

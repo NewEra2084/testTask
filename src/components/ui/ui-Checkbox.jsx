@@ -1,8 +1,4 @@
-export function UICheckbox({
-  className,
-  variant,
-  children
-}) {
+export function UICheckbox({ className, variant, children }) {
   return (
     <div className={className}>
       <label htmlFor={variant} className={`modal__input-title`}>

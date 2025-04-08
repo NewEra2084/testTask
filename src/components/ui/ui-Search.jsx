@@ -1,13 +1,11 @@
-export function  UISearch({search, inputText}) {
-    return ( 
-        <input
-          type="text"
-          placeholder={inputText}
-          onChange={() =>
-            search()
-          }
-          className="sans header__search__input"
-          id="name"
-        />
-     );
+export function UISearch({ placeholder, onChange, className, id }) {
+  return (
+    <input
+      type="text"
+      placeholder={placeholder}
+      onChange={onChange}
+      className={className}
+      id={id}
+    />
+  );
 }
