@@ -1,7 +1,6 @@
 import { ListItem } from "./listItem";
 import { editCustomer } from "./logic";
 
-
 export function List({
   customers,
   str,
@@ -16,6 +15,7 @@ export function List({
   }
   return (
     <div className="sans list">
+      {/* Не стал выносить это как ListItem, Потому что ListItem был предназначен для перебора по списку */}
       <div className="list__title">
         <h5 className="tab1">Номер</h5>
         <h5 className="tab2">ФИО</h5>
@@ -36,6 +36,7 @@ export function List({
               <ListItem
                 className="list__collection__item"
                 id={id}
+                key={id}
                 handler={() => {
                   listClickHandler(id);
                 }}

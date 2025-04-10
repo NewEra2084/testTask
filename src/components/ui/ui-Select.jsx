@@ -5,8 +5,14 @@ export function UISelect({ ref, className, variant, children, error }) {
         {children}
       </label>
       <div className="modal__input-wrapper input">
-        <select ref={ref} id="group" className="modal__input-field" data-localstorage>
-          <option value="Выбрать" disabled selected>
+        <select
+          ref={ref}
+          id="group"
+          className="modal__input-field"
+          defaultValue="Выбрать"
+          data-localstorage
+        >
+          <option value="Выбрать" disabled>
             Выбрать
           </option>
           <option value="Прохожий">Прохожий</option>

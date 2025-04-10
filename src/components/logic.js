@@ -1,3 +1,4 @@
+//Я вынес сюда логику из компонентов
 function localStorageWrite(values, index) {
   const obj = {};
   let checkbox = values[3].checked;
@@ -11,6 +12,7 @@ function localStorageWrite(values, index) {
 }
 
 function localStorageRead() {
+  //i выступает в качестве названия ключа
   let values = [];
   for (let i = 1; i <= localStorage.length; i++) {
     try {
@@ -29,21 +31,22 @@ function ChangeHandler(itemForFilter, item, state, tempStr) {
     tempStr
   );
 }
-function burgerClickHandle(isClicked,setClicked,state) {
-    if (!isClicked) {
-      setClicked(true);
-    }
-    if (isClicked) {
-      filterBoth(
-        [
-          document.querySelector("#nameMd").value.toLowerCase(),
-          document.querySelector("#companyMd").value.toLowerCase(),
-        ],
-        state
-      );
-      setClicked(false);
-    }
+
+function burgerClickHandle(isClicked, setClicked, state) {
+  if (!isClicked) {
+    setClicked(true);
   }
+  if (isClicked) {
+    filterBoth(
+      [
+        document.querySelector("#nameMd").value.toLowerCase(),
+        document.querySelector("#companyMd").value.toLowerCase(),
+      ],
+      state
+    );
+    setClicked(false);
+  }
+}
 
 function updateState(set) {
   const values = localStorageRead();
@@ -87,5 +90,5 @@ export {
   countInOut,
   filterBoth,
   ChangeHandler,
-  burgerClickHandle
+  burgerClickHandle,
 };

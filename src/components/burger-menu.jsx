@@ -57,7 +57,7 @@ export function Burger({ inputText, buttonText, setIsOpen, state, tempStr }) {
             className="sans header__search__input"
             id="companyMd"
           ></UISearch>
-          
+
           <UIButton
             variant={"header"}
             onClick={() => setIsOpen({ ...setIsOpen, adding: true })}
