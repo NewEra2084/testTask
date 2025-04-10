@@ -1,63 +1,50 @@
 import logo from "../media/logo.svg";
-import { useState } from "react";
 import { UIButton, UISearch } from "./ui";
-import Customers from "./customers.jsx";
-import { MenuCloseIcon } from "../media/menuClose.jsx";
-import { MenuIcon } from "../media/menu.jsx";
+import { Customers } from "./customers.jsx";
+import { Burger } from "./burger-menu.jsx";
+import { ChangeHandler, filterCompanies, filterNames } from "./logic.js";
+import { useState } from "react";
 
 export function Header({
   inputText,
   buttonText,
-  filterNames,
-  filterCompanies,
-  filterBoth,
   state,
   tempStr,
   setIsOpen,
   inCount = 0,
   outCount = 0,
 }) {
-  const [isClicked, setClicked] = useState(false);
+  const [filterNamesState, setFilterNamesState] = useState("");
+  const [filterCompaniesState, setFilterCompaniesState] = useState("");
 
-  function ChangeHandler(itemForFilter, item) {
-    itemForFilter(
-      document.querySelector(`#${item}`).value.toLowerCase(),
-      state,
-      tempStr
-    );
+  function filterNamingHandler(e) {
+    setFilterNamesState(() => e.target.value);
   }
-
-  function burgerClickHandle() {
-    if (!isClicked) {
-      setClicked(true);
-      state({ name: "", company: "" });
-    }
-    if (isClicked) {
-      filterBoth(
-        [
-          document.querySelector("#nameMd").value.toLowerCase(),
-          document.querySelector("#companyMd").value.toLowerCase(),
-        ],
-        state
-      );
-      setClicked(false);
-    }
+  function filterCompaniesHandler(e) {
+    setFilterCompaniesState(() => e.target.value);
   }
 
   return (
     <header className="header-main">
       <img src={logo} alt="Агроном сад" className="header__logo" />
-
       <div className="header__search">
         <UISearch
+          value={filterNamesState}
           placeholder={inputText}
-          onChange={() => ChangeHandler(filterNames, "name")}
+          onChange={(e) => {
+            filterNamingHandler(e);
+            ChangeHandler(filterNames, "name", state, tempStr);
+          }}
           className="sans header__search__input"
           id="name"
         ></UISearch>
         <UISearch
+          value={filterCompaniesState}
           placeholder={"Поиск по компании"}
-          onChange={() => ChangeHandler(filterCompanies, "company")}
+          onChange={(e) => {
+            filterCompaniesHandler(e);
+            ChangeHandler(filterCompanies, "company", state, tempStr);
+          }}
           className="sans header__search__input"
           id="company"
         ></UISearch>
@@ -68,38 +55,13 @@ export function Header({
           {buttonText}
         </UIButton>
       </div>
-      {/*Выпадающее меню*/}
-      <div className="burger-main">
-        <button className="burger__button" onClick={burgerClickHandle}>
-          {isClicked ? (
-            <MenuCloseIcon className={"burger__close"} />
-          ) : (
-            <MenuIcon className={"burger__close"} />
-          )}
-        </button>
-        {isClicked && (
-          <div className={"burger burger-opened"}>
-            <UISearch
-              placeholder={inputText}
-              onChange={() => ChangeHandler(filterNames, "nameMd")}
-              className="sans header__search__input"
-              id="nameMd"
-            ></UISearch>
-            <UISearch
-              placeholder={inputText}
-              onChange={() => ChangeHandler(filterCompanies, "companyMd")}
-              className="sans header__search__input"
-              id="companyMd"
-            ></UISearch>
-            <UIButton
-              variant={"header"}
-              onClick={() => setIsOpen({ ...setIsOpen, adding: true })}
-            >
-              {buttonText}
-            </UIButton>
-          </div>
-        )}
-      </div>
+      <Burger
+        inputText={inputText}
+        buttonText={buttonText}
+        setIsOpen={setIsOpen}
+        state={state}
+        tempStr={tempStr}
+      ></Burger>
       <Customers inCount={inCount} outCount={outCount} />
     </header>
   );

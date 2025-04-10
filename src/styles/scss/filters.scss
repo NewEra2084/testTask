@@ -30,16 +30,13 @@
 
 @mixin clear-filters($color) {
   background-color: $color;
-  border-radius: 1.5rem;
+  border-radius: 20px;
   border: none;
   color: white;
-  padding: 1.25rem 0.5rem;
+  padding: 1rem 0.5rem;
   font-size: 24px;
 }
 .without {
-  @include clear-filters(rgb(196 196 196));
-}
-.with {
   @include clear-filters(rgb(196 196 196));
 }
 

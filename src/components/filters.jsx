@@ -1,52 +1,53 @@
-import { useEffect, useState} from "react";
+import { useEffect, useState } from "react";
 import { UIButton } from "./ui";
+import { Missing, Present } from "./logic";
 
-export function Filters({ Present, Missing, Clear }) {
+export function Filters({ setCustomers, Clear }) {
   const [filtered, setFiltered] = useState(2);
 
-  useEffect(()=>{
+  useEffect(() => {
+    //выделение кнопки
     const options = document.querySelectorAll(".filters__options");
     options.forEach((element, id) => {
-      if(id === filtered){        
+      if (id === filtered) {
         element.classList.add("without");
-      }else{
+      } else {
         element.classList.remove("without");
-      }      
+      }
     });
-  },[filtered])
+  }, [filtered]);
 
   return (
     <div className={"filters"}>
       <h2 className={"filters__title sans"}>Фильтровать по:</h2>
       <div className="filters__variants">
-        <button
+        <UIButton
           className={"filters__options"}
-          id="abc"
           onClick={() => {
-            Missing();
-            setFiltered(()=> 0);
+            Missing(setCustomers);
+            setFiltered(() => 0);
           }}
         >
           Отсутствующим
-        </button>
-        <button
+        </UIButton>
+        <UIButton
           className={"filters__options"}
           onClick={() => {
-            Present();
+            Present(setCustomers);
             setFiltered(() => 1);
           }}
         >
           Присутствующим
-        </button>
-        <button
+        </UIButton>
+        <UIButton
           className={"without filters__options"}
           onClick={() => {
             Clear();
-            setFiltered(()=>2);
+            setFiltered(() => 2);
           }}
         >
           Без фильтров
-        </button>
+        </UIButton>
       </div>
     </div>
   );

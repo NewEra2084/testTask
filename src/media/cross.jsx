@@ -2,8 +2,6 @@ export function CrossIcon({ className }) {
 	return (
 		<svg
 			className={className}
-			width="46.000000"
-			height="46.000000"
 			viewBox="0 0 46 46"
 			fill="none"
 		>

@@ -2,256 +2,529 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
 
 .sans {
-	font-family: "Open-Sans", sans-serif;
+  font-family: "Open-Sans", sans-serif;
 }
 .roboto {
-	font-family: "Roboto";
+  font-family: "Roboto";
 }
 
 .transition::placeholder {
-	opacity: 0;
+  opacity: 0;
 }
-.main{
-	padding-left: 3rem;
+.main {
+  padding-left: 3rem;
   padding-right: 3rem;
-	display: flex;
-	flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
-.ui-green{
-	color: white;
-	border-radius: 0.75rem;
-	filter: drop-shadow(0 4px 3px rgb(0 0 0 / 0.07));
-	background-color: #4CAF50;
-	border: none;
+.ui-green {
+  color: white;
+  border-radius: 0.75rem;
+  filter: drop-shadow(0 4px 3px rgb(0 0 0 / 0.07));
+  background-color: #4caf50;
+  border: none;
 }
-.ui-gray{
-	color: white;
-	border-radius: 0.75rem;
-	filter: drop-shadow(0 4px 3px rgb(0 0 0 / 0.07));
-	background-color: #737373;
-	border: none;
+.ui-gray {
+  color: white;
+  border-radius: 0.75rem;
+  filter: drop-shadow(0 4px 3px rgb(0 0 0 / 0.07));
+  background-color: #737373;
+  border: none;
 }
 
 //media
-@media screen and (max-width: 1460px) {
-	/* header start */
-	.header__customers{
-		top: 48px;
-	}
-	.header__customers__text {
-		display: inline;
-		margin-right: 10px;
-	}
-	/* filters start */
-	.filters {
-		bottom: 3vh;
-	}
+@media screen and (min-width: 2300px) {
+  .list__collection {
+    font-size: 30px;
+  }
+  .list__title {
+    font-size: 32px;
+    max-height: 6rem;
+  }
+  .list {
+    max-height: 70vh;
+  }
+  .tab {
+    &1 {
+      min-width: 300px;
+    }
+    &2 {
+      max-width: 601px;
+      min-width: 600px;
+    }
+    &3 {
+      max-width: 601px;
+      min-width: 600px;
+    }
+    &4 {
+      min-width: 600px;
+    }
+    &5 {
+      min-width: 400px;
+    }
+    &7 {
+      height: 80px;
+      width: 80px;
+    }
+    &8 {
+      height: 80px;
+      width: 80px;
+    }
+  }
+}
+@media screen and (max-width: 2000px) {
+  .modal__wrapper {
+    padding-left: 280px;
+  }
+}
+@media screen and (max-width: 1800px) {
+  .modal {
+    &__input-field {
+      width: auto;
+      font-size: 15px;
+    }
+    &__input-title {
+      font-size: 25px;
+      min-width: 15rem;
+    }
+    &__form-input {
+      padding-top: 20px;
+    }
+    &__also {
+      padding-top: 20px;
+    }
+  }
+  .modal__wrapper {
+    min-height: 200px;
+    max-height: 400px;
+    padding: 20px 200px 20px 200px;
+  }
+  .modal__buttons-wrapper {
+    padding-top: 30px;
+  }
+  .modal__buttons {
+    font-size: 15px;
+    height: 2.4rem;
+    width: 200px;
+  }
+}
+@media screen and (max-width: 1600px) {
+  .modal {
+    &__input-field {
+      width: auto;
+      font-size: 15px;
+    }
+    &__input-title {
+      font-size: 20px;
+      min-width: 10rem;
+    }
+    &__form-input {
+      padding-top: 20px;
+    }
+    &__also {
+      padding-top: 20px;
+    }
+  }
+  .modal__wrapper {
+    min-height: 200px;
+    max-height: 400px;
+    padding: 20px 15vw;
+  }
+  .modal__buttons {
+    font-size: 15px;
+    height: 2.4rem;
+    width: 200px;
+  }
+  /* header start */
+  .header__logo {
+    height: 70px;
+  }
+  .header__customers {
+    top: 20px;
+  }
+  .header__customers {
+    font-size: 1.5rem;
+    line-height: 2rem;
+    &__text {
+      font-size: 1.5rem;
+      margin-top: 0;
+    }
+  }
+  .header__search__input {
+    width: 200px;
+    height: 35px;
+  }
+  .header__search__button {
+    min-width: 200px;
+    height: 35px;
+  }
+  /* filters start */
+  .filters {
+    bottom: 3vh;
+  }
+
+  .tab {
+    &1 {
+      min-width: 150px;
+    }
+    &2 {
+      max-width: 201px;
+      min-width: 200px;
+    }
+    &3 {
+      max-width: 201px;
+      min-width: 200px;
+    }
+    &4 {
+      min-width: 400px;
+    }
+    &5 {
+      min-width: 400px;
+    }
+  }
+  .hr {
+    width: 1400px;
+  }
 }
 
 @media screen and (max-width: 1250px) {
-	/* header start */
-	.header__search__input {
-		min-width: 0;
-	}
-	.header__search__button {
-		min-width: 0;
-	}
-	.header__customers {
-		top: 24px;
-		right: 48px;
-	}
-	.header__customers__text {
-		display: block;
-		
-	}
-  
-	/* filters start */
-	.filters {
-		bottom: 48px;
-		gap: 10px;
-		align-items: center;
-	}
-	.filters button {
-		max-height: 150px;
-	}
-}
+  /* header start */
+  .header__logo {
+    padding-top: 10px;
+    height: 60px;
+  }
+  .header__search__input {
+    width: 180px;
+    font-size: 12px;
+  }
+  .header__search__button {
+    min-width: 0;
+  }
+  .header__customers {
+    top: 24px;
+    right: 48px;
+  }
 
-@media screen and (max-width: 1200px) {
-	/* header start */
-	.header__customers {
-		top: 80vh;
-		right: calc(100vw - 320px);
-	}
-	.header__customers__text {
-		display: inline;
-	}
+  /* filters start */
+  .filters {
+    bottom: 48px;
+    gap: 10px;
+    align-items: center;
+  }
+  .filters button {
+    max-height: 150px;
+  }
+  .filters__title {
+    font-size: 20px;
+  }
+  .filters__variants {
+    gap: 10px;
+  }
+  .filters__options {
+    font-size: 15px;
+  }
+
+  .modal__buttons {
+    width: 160px;
+  }
 }
 
 @media screen and (max-width: 980px) {
-	/* header start */
-	.header__customers {
-		position: absolute;
-		right: calc(100vw - 85px - 242px - 220px);
-		top: 30px;
-	}
-	.header__customers__text {
-		display: inline;
-		margin: 0 10px 0 0;
-	}
+  /* header start */
+  .header__customers {
+    position: absolute;
+    right: initial;
+    left: 3rem;
+    top: initial;
+    bottom: 8vh;
+  }
+  .header__customers__text {
+    display: inline;
+    margin: 0 10px 0 0;
+  }
 
-	/* list start */
-	.list {
-		font-size: 20px !important;
-		height: 80vh;
-	}
-	.list__title {
-		font-size: 15px;
-	}
-	.list__collection {
-		font-size: 15px;
-	}
-	.list__collection__item {
-		padding-top: 10px;
-	}
-	.filters {
-		bottom: 10px;
-		font-size: 20px;
-	}
-
-	/* modal start */
-	.modal__input-title {
-		display: none;
-	}
-	.transition::placeholder {
-		opacity: 1;
-	}
-	.customerInfo{
-		align-items: center;
-	}
-	.modal__wrapper{
-		padding: 66px 10vw;
-	}
+  /* list start */
+  .list {
+    height: 80vh;
+  }
+  .list__title {
+    font-size: 20px;
+  }
+  .list__collection {
+    font-size: 15px;
+  }
+  .list__collection__item {
+    padding-top: 10px;
+  }
+  .filters {
+    bottom: 10px;
+    font-size: 20px;
+  }
+  /* modal start */
+  .modal {
+    &__input-field {
+      width: auto;
+      font-size: 15px;
+    }
+    &__input-title {
+      font-size: 15px;
+      min-width: 10rem;
+    }
+    &__form-input {
+      padding-top: 20px;
+    }
+    &__also {
+      padding-top: 20px;
+    }
+  }
+  .modal__wrapper {
+    min-height: 200px;
+    max-height: 400px;
+    padding: 20px 10vw;
+  }
+  .modal__buttons-wrapper {
+    padding-top: 30px;
+    justify-content: center;
+  }
+  .modal__buttons {
+    font-size: 15px;
+    height: 2rem;
+    width: 100px;
+  }
+  .tab {
+    &1 {
+      min-width: 100px;
+    }
+    &2 {
+      max-width: 151px;
+      min-width: 150px;
+    }
+    &3 {
+      max-width: 151px;
+      min-width: 150px;
+    }
+    &4 {
+      min-width: 300px;
+    }
+    &5 {
+      min-width: 250px;
+    }
+    &7 {
+      min-width: 40px;
+      height: 40px;
+    }
+    &8 {
+      min-width: 40px;
+      height: 40px;
+    }
+  }
+  .hr {
+    width: 900px;
+  }
 }
 
 @media screen and (max-width: 840px) {
-	/* header start */
-	.header__customers {
-		position: absolute;
-		left: 15vw;
-		bottom: 10vh !important;
-		height: 80px;
-	}
-	.header__customers__text {
-		display: inline;
-	}
+  /* header start */
+  .header__customers__text {
+    display: inline;
+  }
 
-	/* filters start */
-	.filters__variants {
-		gap: 10px;
-	}
+  /* filters start */
+  .filters__variants {
+    gap: 10px;
+  }
 
-	/* list start */
-	.list {
-		max-height: 60vh;
-	}
+  /* list start */
+  .list {
+    max-height: 60vh;
+  }
 
-	/* modal start*/
-	.modal__buttons {
-		width: 150px;
-	}
-	.modal__form-input {
-		max-width: 200px;
-		margin-bottom: 20px;
-	}
-	.modal__form-input > input {
-		width: 200px;
-	}
+  /* modal start*/
+  .modal__input-title {
+    min-width: 8rem;
+  }
+  .modal__input-field {
+    width: 160px;
+  }
+
+  .close-button {
+    width: 30px;
+    height: 30px;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .header__search {
+    display: flex;
+  }
+  .burger-main {
+    display: none;
+  }
+  .burger-opened {
+    display: none;
+  }
 }
 
 @media screen and (max-width: 610px) {
-	/* header start */
-	.header__logo {
-		width: 120px;
-	}
-	.header__search__button {
-		padding: 0 5px 0 5px;
-	}
-	.header__search__input {
-		max-width: 10rem;
-		padding-right: 20px;
-	}
-	.header__search {
-		gap: 10px;
-		padding-top: 0px;
-	}
-	.header__customers__text {
-		display: none !important;
-	}
-	.header__customers {
-		order: 1;
-		right: calc(100vw - 48px - 150px - 40px);
-		top: 24px;
-	}
+  /* header start */
+  .header__logo {
+    width: 120px;
+  }
+  .header__search__button {
+    padding: 0 5px 0 5px;
+  }
+  .header__search__input {
+    max-width: 10rem;
+    padding-right: 20px;
+  }
+  .header__search {
+    gap: 10px;
+    padding-top: 0px;
+  }
+  .header__customers__text {
+    display: none !important;
+  }
+  .header__customers {
+    order: 1;
+    right: calc(100vw - 48px - 150px - 40px);
+    top: 33px;
+  }
 
-	/* list start */
-	.list {
-		max-height: 65vh;
-	}
-
-	/* filters start */
-	.filters {
-		font-size: 20px;
-		right: 48px;
-		justify-content: center;
-	}
-	.filters__title {
-		font-size: 25px;
-	}
-	.filters__variants {
-		gap: 10px;
-		justify-content: center;
-	}
+  /* list start */
+  .list {
+    max-height: 65vh;
+  }
+  /* filters start */
+  .filters {
+    display: block;
+    right: 48px;
+    justify-content: center;
+  }
+  .filters__title {
+    text-align: center;
+    font-size: 20px;
+    padding-bottom: 20px;
+  }
+  .filters__variants {
+    gap: 10px;
+    justify-content: center;
+  }
+  .filters__options {
+    font-size: 15px;
+  }
+  .without {
+    padding: 0.5rem 0.5rem;
+  }
+  .overflow {
+    padding-top: 50px;
+  }
+  .modal {
+    &__check-button {
+      height: 20px;
+    }
+    &__also {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-top: 10px;
+    }
+    &__wrapper {
+      max-height: 500px;
+      padding: 20px 10px 40px 10px;
+      margin-top: 5vh;
+      font-size: 20px;
+    }
+    &__wrapper > form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    &__input-field {
+      padding: 10px 20px;
+    }
+    &__form-error {
+      text-align: center;
+    }
+    &__form-input {
+      padding-top: 10px;
+      flex-direction: column;
+      align-items: center;
+    }
+    &__input-title {
+      min-width: 0;
+    }
+    &__buttons-wrapper {
+      padding-top: 10px;
+    }
+  }
+  .tab {
+    &1 {
+      min-width: 80px;
+    }
+    &2 {
+      max-width: 101px;
+      min-width: 100px;
+    }
+    &3 {
+      max-width: 101px;
+      min-width: 100px;
+    }
+    &4 {
+      min-width: 160px;
+    }
+    &5 {
+      min-width: 160px;
+    }
+    &7 {
+      min-width: 25px;
+      height: 25px;
+    }
+    &8 {
+      min-width: 25px;
+      height: 25px;
+    }
+  }
+  .list__title {
+    font-size: 15px;
+    padding-left: 10px;
+  }
+  .list__collection {
+    font-size: 10px;
+  }
+  .hr {
+    width: 650px;
+  }
+  .list__collection {
+    padding-left: 10px;
+  }
 }
+@media screen and (max-width: 480px) {
+  /* header start */
+  .header__logo {
+    height: 50px;
+  }
+  .header__search {
+    font-size: 10px;
+    gap: 5px;
+  }
+  .header__customers {
+    font-size: 20px;
+    top: 52px;
+    right: initial;
+    left: 115px;
+  }
 
-@media screen and (max-width: 410px) {
-	/* header start */
-	.header__search {
-		font-size: 10px;
-		gap: 5px;
-	}
-	.header__customers {
-		font-size: 25px;
-		top: 48px;
-		right: inherit;
-		left: calc(48px + 60px);
-	}
-
-	/* list start */
-	.list {
-		max-height: 60vh;
-	}
-
-	/* filters start */
-	.filters {
-		font-size: 20px;
-		bottom: 3vh;
-	}
-	.filters__title {
-		font-size: 20px;
-	}
-	.filters__variants-without {
-		padding: 10px 8px 10px 8px;
-	}
-
-	/* modal start*/
-	.modal__wrapper {
-		padding: 80px 10px 40px 10px;
-		margin-top: 5vh;
-		font-size: 20px;
-	}
-	.modal__wrapper > form {
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-	}
+  /* list start */
+  .list {
+    max-height: 60vh;
+  }
+  .filters {
+    bottom: 30px;
+  }
+  .filters__title {
+    padding-bottom: 0;
+  }
+  .filters__options {
+    font-size: 14px;
+  }
 }

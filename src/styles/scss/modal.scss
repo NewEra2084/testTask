@@ -1,7 +1,7 @@
 .overflow {
   position: fixed;
   display: flex;
-  padding-top: 15vh;
+  padding-top: 20vh;
   inset: 0px;
   height: 100vh;
   width: 100vw;
@@ -15,6 +15,8 @@
 }
 
 .close-button {
+  width: 46px;
+  height: 46px;
   position: absolute;
   top: 1.25rem;
   right: 1.25rem;
@@ -28,7 +30,7 @@
   &__also {
     display: flex;
     align-items: center;
-    padding-top: 69px;
+    padding-top: 50px;
   }
   &__check-button {
     width: 2rem;
@@ -36,33 +38,32 @@
   }
   &__buttons {
     height: 3rem;
-    width: 273px;
+    width: 250px;
     border: none;
     font-size: 24px;
-	&-wrapper {
-		padding-top: 40px;
-		display: flex;
-		justify-content: center;
-		column-gap: 2rem;
-		flex-wrap: wrap;
-		row-gap: 0.5rem;
-	  }
+    &-wrapper {
+      padding-top: 40px;
+      display: flex;
+      column-gap: 2rem;
+      flex-wrap: wrap;
+      row-gap: 0.5rem;
+    }
   }
   &__input-field {
     filter: drop-shadow(0 4px 3px rgb(0 0 0 / 0.07));
     border-radius: 0.5rem;
-    color: rgb(115 115 115);
     padding: 15px 1.25rem 15px 15px;
     font-size: 24px;
     border: none;
   }
   &__form-input {
     display: flex;
-    padding-top: 52px;
+    padding-top: 35px;
     align-items: center;
   }
   &__input-title {
-    width: 20rem;
+    min-width: 20rem;
+    font-weight: 600;
   }
   &__input-wrapper {
     height: 52px;
@@ -76,22 +77,19 @@
     color: red;
     margin: 0;
     font-size: small;
-
-    &[data-error="true"] {
-      display: block;
-    }
   }
   &__wrapper {
     box-sizing: border-box;
     margin: 0 auto;
-    padding: 0 14vw 66px;
+    padding: 0 270px 66px 350px;
     font-size: 1.875rem;
     line-height: 2.25rem;
     color: rgb(78 48 0);
     border-radius: 1.5rem;
     background-color: white;
     position: relative;
-    width: 60vw;
-    max-height: 580px;
+    width: 65vw;
+    height: fit-content;
+    max-height: 500px;
   }
 }

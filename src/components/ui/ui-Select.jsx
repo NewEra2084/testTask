@@ -1,5 +1,3 @@
-import { Error } from "./error-msg";
-
 export function UISelect({ ref, className, variant, children, error }) {
   return (
     <div className={className}>
@@ -15,7 +13,6 @@ export function UISelect({ ref, className, variant, children, error }) {
           <option>Клиент</option>
           <option>Партнер</option>
         </select>
-        <Error error={error}>Заполните это поле</Error>
       </div>
     </div>
   );

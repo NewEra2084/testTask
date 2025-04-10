@@ -30,18 +30,9 @@
 
 .without {
   background-color: rgb(196, 196, 196);
-  border-radius: 1.5rem;
+  border-radius: 20px;
   border: none;
   color: white;
-  padding: 1.25rem 0.5rem;
-  font-size: 24px;
-}
-
-.with {
-  background-color: rgb(196, 196, 196);
-  border-radius: 1.5rem;
-  border: none;
-  color: white;
-  padding: 1.25rem 0.5rem;
+  padding: 1rem 0.5rem;
   font-size: 24px;
 }/*# sourceMappingURL=filters.css.map */

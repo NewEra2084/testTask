@@ -10,7 +10,6 @@ export function UIInput({ className1, className3, className2, variant, value, on
           className={className2}
           data-localstorage
           id={variant}
-          placeholder={children}
           value={value}
           onChange={onChange}
         ></input>

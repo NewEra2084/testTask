@@ -1,6 +1,7 @@
-export function UISearch({ placeholder, onChange, className, id }) {
+export function UISearch({ value, placeholder, onChange, className, id }) {
   return (
     <input
+      value={value}
       type="text"
       placeholder={placeholder}
       onChange={onChange}

@@ -22,6 +22,31 @@ export function Modal({
   function companyNamingHandler(e) {
     setCompanyInput(() => e.target.value);
   }
+  function Validate(e) {
+    if (nameInput === "") {
+      e.preventDefault();
+      document.querySelector(".NameError").style.display = "block";
+    } else {
+      document.querySelector(".NameError").style.display = "none";
+    }
+    if (companyInput === "") {
+      e.preventDefault();
+      document.querySelector(".CompanyError").style.display = "block";
+    } else {
+      document.querySelector(".CompanyError").style.display = "none";
+    }
+    if (selector.current?.value === "Выбрать") {
+      selector.current.value = "Прохожий";
+    }
+  }
+  function Submitting(e) {
+    e.preventDefault();
+    action();
+    localStorageWrite(document.querySelectorAll("[data-localstorage]"), index);
+    onClose();
+    setNameInput("");
+    setCompanyInput("");
+  }
 
   return (
     <div className="overflow">
@@ -30,21 +55,13 @@ export function Modal({
           className="customerInfo"
           name="customerInfo"
           onSubmit={(e) => {
-            e.preventDefault();
-            action();
-            localStorageWrite(
-              document.querySelectorAll("[data-localstorage]"),
-              index
-            );
-            onClose();
-            setNameInput("");
-            setCompanyInput("");
+            Submitting(e);
           }}
         >
           <UIInput
             required
             className1={"modal__form-input"}
-            className2={"transition sans modal__input-field"}
+            className2={"sans modal__input-field"}
             className3={"NameError"}
             variant={"modal__name-for"}
             value={nameInput}
@@ -57,7 +74,7 @@ export function Modal({
           <UIInput
             required
             className1={"modal__form-input"}
-            className2={"transition sans modal__input-field"}
+            className2={"sans modal__input-field"}
             className3={"CompanyError"}
             variant={"modal__company-for"}
             value={companyInput}
@@ -83,18 +100,7 @@ export function Modal({
               variant={"green"}
               type={"submit"}
               onClick={(e) => {
-                if (nameInput === "") {
-                  e.preventDefault();
-                  document.querySelector(".NameError").style.display = "block";
-                }
-                if (companyInput === "") {
-                  e.preventDefault();
-                  document.querySelector(".CompanyError").style.display =
-                    "block";
-                }
-                if (selector.current?.value === "Выбрать") {
-                  selector.current.value = "Прохожий";
-                }
+                Validate(e);
               }}
             >
               {actionName}

@@ -7,7 +7,7 @@ export function UIButton({className, variant, type = "button", onSubmit, onClick
     }[variant]
 	return (
 		<button
-			className={buttonColors}
+			className={(variant && buttonColors) || className}
       type={type}
       onSubmit={onSubmit}
       onClick={onClick}

@@ -5,7 +5,7 @@
 }
 
 .list__title {
-  color: #4E3000;
+  color: #4e3000;
   display: flex;
   font-size: 24px;
   padding-right: 40px;
@@ -52,7 +52,7 @@
 .tab7 {
   border-radius: 100%;
   height: 56px;
-  background: #80BB00;
+  background: #80bb00;
   min-width: 56px;
 }
 
@@ -66,12 +66,11 @@
 .hr {
   height: 1px;
   margin-top: 8px;
-  width: 1770px;
 }
 
 .list__collection {
   padding-right: 40px;
-  font-size: 16px;
+  font-size: 20px;
   margin-top: 0;
 }
 
@@ -82,4 +81,8 @@
 
 .list__collection__item:first-child {
   padding-top: 0;
+}
+
+.list h2 {
+  font-weight: 400;
 }/*# sourceMappingURL=list.css.map */
