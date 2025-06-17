@@ -9,9 +9,11 @@ export function List({
   isOpen,
   setCustomerIndexInList,
 }) {
+  console.log(customers);
+  
   function listClickHandler(id) {
-    editCustomer(id + 1, setIsOpen, setReplaced, isOpen);
-    setCustomerIndexInList(id + 1);
+    editCustomer(id, setIsOpen, setReplaced, isOpen);
+    setCustomerIndexInList(id);
   }
   return (
     <div className="sans list">
@@ -31,14 +33,14 @@ export function List({
               customer.name.toLowerCase().includes(str.name) &&
               customer.company.toLowerCase().includes(str.company)
           )
-          .map((customer, id) => {
+          .map((customer) => {
             return (
               <ListItem
                 className="list__collection__item"
-                id={id}
-                key={id}
+                id={customer.index}
+                key={customer.index}
                 handler={() => {
-                  listClickHandler(id);
+                  listClickHandler(customer.index);
                 }}
                 customer={customer}
               ></ListItem>

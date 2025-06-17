@@ -20,8 +20,12 @@ function localStorageWrite(values, index) {
   const linesParsed = JSON.parse(lines);
   const id = Object?.keys(linesParsed).length;
   if (!index) {
+    obj.index = id+1;
     linesParsed[id + 1] = obj;
   } else {
+    console.log(index);
+    
+    obj.index = index;
     linesParsed[index] = obj;
   }
   localStorage.setItem("lines", JSON.stringify(linesParsed));
