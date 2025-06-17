@@ -1,12 +1,11 @@
 import logo from "../media/logo.svg";
-import { UIButton, UISearch } from "./ui";
+import { UIButton, UISearch } from "../ui/index.js";
 import { Customers } from "./customers.jsx";
 import { Burger } from "./burger-menu.jsx";
-import { ChangeHandler, filterCompanies, filterNames } from "./logic.js";
+import { ChangeHandler, filterCompanies, filterNames } from "../logic.js";
 import { useState } from "react";
 
 export function Header({
-  inputText,
   buttonText,
   state,
   tempStr,
@@ -30,10 +29,10 @@ export function Header({
       <div className="header__search">
         <UISearch
           value={filterNamesState}
-          placeholder={inputText}
+          placeholder={"Поиск по имени"}
           onChange={(e) => {
             filterNamingHandler(e);
-            ChangeHandler(filterNames, "name", state, tempStr);
+            ChangeHandler(filterNames, e.target.value.toLowerCase(), state, tempStr);
           }}
           className="sans header__search__input"
           id="name"
@@ -43,7 +42,7 @@ export function Header({
           placeholder={"Поиск по компании"}
           onChange={(e) => {
             filterCompaniesHandler(e);
-            ChangeHandler(filterCompanies, "company", state, tempStr);
+            ChangeHandler(filterCompanies, e.target.value.toLowerCase(), state, tempStr);
           }}
           className="sans header__search__input"
           id="company"
@@ -56,7 +55,6 @@ export function Header({
         </UIButton>
       </div>
       <Burger
-        inputText={inputText}
         buttonText={buttonText}
         setIsOpen={setIsOpen}
         state={state}

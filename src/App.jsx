@@ -7,7 +7,7 @@ import "./styles/css/style.css";
 // Мне кажется, что можно сжать количество state(Использовать Reducer или отдельный массив), но я слишком поздно об этом подумал
 import { Header, List, Modal, Filters } from "./components";
 import { useEffect, useState } from "react";
-import { localStorageWrite, updateState, countInOut } from "./components/logic";
+import { localStorageWrite, updateState, countInOut } from "./logic";
 
 function HomePage() {
   const [isOpen, setIsOpen] = useState({ adding: false, replacing: false });
@@ -22,6 +22,8 @@ function HomePage() {
   useEffect(() => {
     updateState(setCustomers);
     countInOut(setCountInOut);
+    const a = localStorage.getItem("lines");
+    if(!a){localStorage.setItem("lines", JSON.stringify({}));}
   }, []);
   useEffect(() => {
     setCust(JSON.parse(localStorage.getItem(replaced)));
@@ -34,7 +36,6 @@ function HomePage() {
   return (
     <>
       <Header
-        inputText={"Поиск по имени"}
         buttonText={"Добавить"}
         setIsOpen={setIsOpen}
         state={setTempStr}
