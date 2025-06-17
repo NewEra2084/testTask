@@ -8,5 +8,6 @@
 ## OR
 - clone repository
 - open console and type `npm i`
+- then `npm run build`
 - after that `serve -s build`
 - open [localhost](http://localhost:3000/)
