@@ -93,3 +93,10 @@
   height: fit-content;
   max-height: 500px;
 }/*# sourceMappingURL=modal.css.map */
+
+.block{
+  display: block;
+}
+.none{
+  display: none;
+}

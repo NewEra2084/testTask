@@ -1,4 +1,4 @@
-export function UISelect({ ref, className, variant, children, error }) {
+export function UISelect({ ref, className, variant, children, onChange }) {
   return (
     <div className={className}>
       <label htmlFor={variant} className={`modal__input-title`}>
@@ -11,6 +11,9 @@ export function UISelect({ ref, className, variant, children, error }) {
           className="modal__input-field"
           defaultValue="Выбрать"
           data-localstorage
+          onChange={(e) => {
+            onChange(e.target.value);
+          }}
         >
           <option value="Выбрать" disabled>
             Выбрать

@@ -1,7 +1,7 @@
 import { CrossIcon } from "../media/cross";
-import { UIButton, UICheckbox, UISelect } from "./ui";
-import { UIInput } from "./ui";
-import { useRef, useState } from "react";
+import { UIButton, UICheckbox, UISelect } from "../ui";
+import { UIInput } from "../ui";
+import { useState } from "react";
 
 export function Modal({
   isOpen = false,
@@ -11,9 +11,13 @@ export function Modal({
   index,
   actionName = "Добавить",
 }) {
-  const selector = useRef(null);
   const [nameInput, setNameInput] = useState("");
   const [companyInput, setCompanyInput] = useState("");
+  const [roleInput, setRoleInput] = useState("Прохожий");
+  const [checkInput, setCheckInput] = useState(false);
+  const [nameError, setNameError] = useState(false);
+  const [companyError, setCompanyError] = useState(false);
+
   if (!isOpen) return;
 
   function namingHandler(e) {
@@ -25,27 +29,28 @@ export function Modal({
   function Validate(e) {
     if (nameInput === "") {
       e.preventDefault();
-      document.querySelector(".NameError").style.display = "block";
+      setNameError(true);
     } else {
-      document.querySelector(".NameError").style.display = "none";
+      setNameError(false);
     }
     if (companyInput === "") {
       e.preventDefault();
-      document.querySelector(".CompanyError").style.display = "block";
+      setCompanyError(true);
     } else {
-      document.querySelector(".CompanyError").style.display = "none";
-    }
-    if (selector.current?.value === "Выбрать") {
-      selector.current.value = "Прохожий";
+      setCompanyError(false);
     }
   }
   function Submitting(e) {
     e.preventDefault();
     action();
-    localStorageWrite(document.querySelectorAll("[data-localstorage]"), index);
+    localStorageWrite([nameInput, companyInput, roleInput, checkInput], index);
     onClose();
     setNameInput("");
     setCompanyInput("");
+    setRoleInput("Прохожий");
+    setCheckInput(false);
+    setNameError(false);
+    setCompanyError(false);
   }
 
   return (
@@ -62,7 +67,7 @@ export function Modal({
             required
             className1={"modal__form-input"}
             className2={"sans modal__input-field"}
-            className3={"NameError"}
+            className3={nameError ? "block" : "none"}
             variant={"modal__name-for"}
             value={nameInput}
             onChange={(e) => {
@@ -75,7 +80,7 @@ export function Modal({
             required
             className1={"modal__form-input"}
             className2={"sans modal__input-field"}
-            className3={"CompanyError"}
+            className3={companyError ? "block" : "none"}
             variant={"modal__company-for"}
             value={companyInput}
             onChange={(e) => {
@@ -85,13 +90,17 @@ export function Modal({
             Компания
           </UIInput>
           <UISelect
-            ref={selector}
             className={"modal__also"}
             variant={"modal__group-for"}
+            onChange={setRoleInput}
           >
             Группа
           </UISelect>
-          <UICheckbox className={"modal__also"} variant={"modal__button-for"}>
+          <UICheckbox
+            className={"modal__also"}
+            variant={"modal__button-for"}
+            onChange={setCheckInput}
+          >
             Присутствие
           </UICheckbox>
           <div className="modal__buttons-wrapper">
@@ -109,9 +118,13 @@ export function Modal({
               className={"roboto modal__buttons"}
               variant={"gray"}
               onClick={() => {
+                onClose();
                 setNameInput("");
                 setCompanyInput("");
-                onClose();
+                setRoleInput("Прохожий");
+                setCheckInput(false);
+                setNameError(false);
+                setCompanyError(false);
               }}
             >
               Закрыть
@@ -121,9 +134,13 @@ export function Modal({
         <div
           className={"close-button"}
           onClick={() => {
+            onClose();
             setNameInput("");
             setCompanyInput("");
-            onClose();
+            setRoleInput("Прохожий");
+            setCheckInput(false);
+            setNameError(false);
+            setCompanyError(false);
           }}
         >
           <CrossIcon />

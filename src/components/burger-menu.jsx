@@ -1,15 +1,15 @@
 import { MenuCloseIcon } from "../media/menuClose.jsx";
 import { MenuIcon } from "../media/menu.jsx";
-import { UIButton, UISearch } from "./ui";
+import { UIButton, UISearch } from "../ui/index.js";
 import {
   burgerClickHandle,
   ChangeHandler,
   filterCompanies,
   filterNames,
-} from "./logic";
+} from "../logic.js";
 import { useState } from "react";
 
-export function Burger({ inputText, buttonText, setIsOpen, state, tempStr }) {
+export function Burger({ buttonText, setIsOpen, state, tempStr }) {
   const [isClicked, setClicked] = useState(false);
   const [filterNamesState, setFilterNamesState] = useState("");
   const [filterCompaniesState, setFilterCompaniesState] = useState("");
@@ -25,7 +25,7 @@ export function Burger({ inputText, buttonText, setIsOpen, state, tempStr }) {
     <div className="burger-main">
       <button
         className="burger__button"
-        onClick={() => burgerClickHandle(isClicked, setClicked, state)}
+        onClick={() => burgerClickHandle(isClicked, setClicked)}
       >
         {isClicked ? (
           <MenuCloseIcon className={"burger__close"} />
@@ -38,10 +38,10 @@ export function Burger({ inputText, buttonText, setIsOpen, state, tempStr }) {
           {/* Имя */}
           <UISearch
             value={filterNamesState}
-            placeholder={inputText}
+            placeholder={"Поиск по имени"}
             onChange={(e) => {
               filterNamingHandler(e);
-              ChangeHandler(filterNames, "nameMd", state, tempStr);
+              ChangeHandler(filterNames, e.target.value.toLowerCase(), state, tempStr);
             }}
             className="sans header__search__input"
             id="nameMd"
@@ -49,10 +49,10 @@ export function Burger({ inputText, buttonText, setIsOpen, state, tempStr }) {
           {/* Организация */}
           <UISearch
             value={filterCompaniesState}
-            placeholder={inputText}
+            placeholder={"Поиск по компании"}
             onChange={(e) => {
               filterCompaniesHandler(e);
-              ChangeHandler(filterCompanies, "companyMd", state, tempStr);
+              ChangeHandler(filterCompanies, e.target.value.toLowerCase(), state, tempStr);
             }}
             className="sans header__search__input"
             id="companyMd"

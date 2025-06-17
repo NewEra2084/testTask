@@ -1,5 +1,5 @@
 import { ListItem } from "./listItem";
-import { editCustomer } from "./logic";
+import { editCustomer } from "../logic";
 
 export function List({
   customers,

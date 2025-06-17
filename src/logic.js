@@ -1,49 +1,52 @@
 //Я вынес сюда логику из компонентов
+
 function localStorageWrite(values, index) {
   const obj = {};
-  let checkbox = values[3].checked;
   values.forEach((item, id) => {
-    obj[id === 0 ? "name" : id === 1 ? "company" : id === 2 ? "role" : "has"] =
-      id === 3 ? checkbox : item.value;
+    obj[
+      id === 0
+        ? "name"
+        : id === 1
+        ? "company"
+        : id === 2
+        ? "role"
+        : "has"
+    ] = item;
   });
-
-  const id = localStorage.length;
-  localStorage.setItem(`${index ? index : id + 1}`, JSON.stringify(obj));
+  const lines = localStorage.getItem("lines");
+  if (lines == null) {
+    localStorage.setItem("lines", JSON.stringify({}));
+  }
+  const linesParsed = JSON.parse(lines);
+  const id = Object?.keys(linesParsed).length;
+  if (!index) {
+    linesParsed[id + 1] = obj;
+  } else {
+    linesParsed[index] = obj;
+  }
+  localStorage.setItem("lines", JSON.stringify(linesParsed));
 }
 
 function localStorageRead() {
-  //i выступает в качестве названия ключа
   let values = [];
-  for (let i = 1; i <= localStorage.length; i++) {
-    try {
-      values.push(JSON.parse(localStorage.getItem(i)));
-    } catch (error) {
-      console.log(error.name + ": " + error.message);
-    }
+  const lines = localStorage.getItem("lines");
+  if (lines == null) return [];
+  const linesParsed = JSON.parse(lines);
+  for (let item of Object.values(linesParsed)) {
+    values.push(item);
   }
   return values;
 }
 
 function ChangeHandler(itemForFilter, item, state, tempStr) {
-  itemForFilter(
-    document.querySelector(`#${item}`).value.toLowerCase(),
-    state,
-    tempStr
-  );
+  itemForFilter(item, state, tempStr);
 }
 
-function burgerClickHandle(isClicked, setClicked, state) {
+function burgerClickHandle(isClicked, setClicked) {
   if (!isClicked) {
     setClicked(true);
   }
   if (isClicked) {
-    filterBoth(
-      [
-        document.querySelector("#nameMd").value.toLowerCase(),
-        document.querySelector("#companyMd").value.toLowerCase(),
-      ],
-      state
-    );
     setClicked(false);
   }
 }
@@ -63,9 +66,6 @@ function filterNames(value, set, tempStr) {
 }
 function filterCompanies(value, set, tempStr) {
   set({ ...tempStr, company: value });
-}
-function filterBoth(value, set) {
-  set({ name: value[0], company: value[1] });
 }
 function editCustomer(name, setIsOpen, setReplaced, isOpen) {
   setIsOpen({ ...isOpen, replacing: true });
@@ -88,7 +88,6 @@ export {
   filterNames,
   editCustomer,
   countInOut,
-  filterBoth,
   ChangeHandler,
   burgerClickHandle,
 };
